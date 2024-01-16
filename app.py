@@ -2,12 +2,18 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 from bs4 import BeautifulSoup
 import time
+from fake_useragent import UserAgent
 
 app = Flask(__name__)
 
 def flipkart_scrape(query):
     url = f'https://www.flipkart.com/search?q={query.replace(" ", "+")}'
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
+    # Generate a random User-Agent
+    user_agent = UserAgent().random
+    headers = {
+        'User-Agent': user_agent,
+        'Referer': 'https://www.flipkart.com/'  # Add a Referer header if needed
+    }
     
     max_retries = 3
     max_delay_sec = 2
