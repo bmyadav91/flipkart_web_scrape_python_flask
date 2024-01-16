@@ -1,0 +1,14 @@
+{% for product in data %}
+<div class="each_product">
+    <div class="product_img_container">
+        <img class="img_product" src="{{ product['image'] }}" alt="{{ product['title'] }}" />
+    </div>
+    <div class="product_content">
+        <h2 class="product_title">{{ product['title'] }}</h2>
+        <div class="price_and_buy">
+            <div class="price_div">{{ product['price'] }}</div>
+            <div class="buy_btn"><a href="{{ product['link'] }}"><i class="bi bi-cart-check-fill"></i></a></div>
+        </div>
+    </div>
+</div>
+{% endfor %}
